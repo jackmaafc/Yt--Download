@@ -14,40 +14,47 @@ A lightweight, local-only web application for downloading YouTube videos and aud
 
 ## Setup & Running (macOS / Linux)
 
-The easiest way to start the app is to use the provided launch script:
+The easiest way to start the app is to use the provided launch script, which handles everything automatically:
 
 ```bash
-# From the project root, make the launcher executable (if not already):
+# 1. Open Terminal and navigate to the folder where you downloaded this code
+cd path/to/youtube_downloader
+
+# 2. Make the launcher executable (if not already):
 chmod +x launch.command
 
-# Run it:
+# 3. Run it:
 ./launch.command
 ```
-*(Alternatively, on macOS you can double-click `YouTubeDownloader.app` if you prefer an icon).*
+*(Alternatively, you can just double-click the included `YouTubeDownloader.app` icon).*
 
 The script will automatically:
 1. Create a Python virtual environment.
-2. Install the required dependencies.
-3. Download a local, static build of FFmpeg (required for processing).
+2. Install the required dependencies (`Flask`, `yt-dlp`).
+3. Download a local, static build of FFmpeg (required for video processing).
 4. Start the local server and open your default web browser.
 
-## Setup & Running (Windows / Manual Setup)
+## Setup & Running (Windows)
 
-1. Create a virtual environment and activate it:
+Because the automated launcher is written for Mac/Linux, Windows users just need to run a few manual commands to set it up:
+
+1. **Install Python:** Ensure you have Python 3.8 or newer installed from [python.org](https://python.org).
+2. **Install FFmpeg:** Download [FFmpeg](https://ffmpeg.org/download.html), extract it, and add it to your Windows System PATH.
+3. **Open Command Prompt / PowerShell** in the project folder and run:
    ```cmd
+   # Create a virtual environment
    python -m venv venv
+   
+   # Activate it
    venv\Scripts\activate
-   ```
-2. Install dependencies:
-   ```cmd
+   
+   # Install dependencies
    pip install -r requirements.txt
-   ```
-3. **Important for Windows:** You must install [FFmpeg](https://ffmpeg.org/download.html) and ensure it is available in your system's `PATH`.
-4. Run the application:
-   ```cmd
+   
+   # Run the application
    python app/app.py
    ```
 
 ## Security Notes
+- **Is the local file directory safe? YES.** The application has strict built-in security protections that **only** allow it to write downloads into your home directory (specifically defaulting to your `Downloads` folder). It actively blocks any attempt to traverse into sensitive or hidden system folders (like `.ssh` or system directories).
 - The server binds strictly to `127.0.0.1` and incorporates CSRF Origin/Referer protections to prevent malicious external websites from interacting with your local downloader.
-- Output file paths are strictly bounded to prevent arbitrary directory traversal.
