@@ -56,5 +56,5 @@ Because the automated launcher is written for Mac/Linux, Windows users just need
    ```
 
 ## Security Notes
-- **Is the local file directory safe? YES.** The application has strict built-in security protections that **only** allow it to write downloads into your home directory (specifically defaulting to your `Downloads` folder). It actively blocks any attempt to traverse into sensitive or hidden system folders (like `.ssh` or system directories).
+- Output file paths are strictly bounded. The application ensures downloads are only written safely to your user directory (defaulting to the `Downloads` folder) and actively blocks arbitrary directory traversal or writes to sensitive hidden system folders.
 - The server binds strictly to `127.0.0.1` and incorporates CSRF Origin/Referer protections to prevent malicious external websites from interacting with your local downloader.
