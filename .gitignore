@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+*.pyo
+*.pyd
+
+# Environment and Config
+.env
+app/settings.json
+
+# Runtime Artifacts and Logs
+server.log
+server.pid
+bin/ffmpeg
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Temp Downloads
+*.webm
+*.mp4
+*.m4a
+*.mp3
+*.part
+*.ytdl
