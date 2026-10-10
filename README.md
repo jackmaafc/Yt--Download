@@ -12,48 +12,42 @@ A lightweight, local-only web application for downloading YouTube videos and aud
 ## Prerequisites
 - **Python 3.8+** installed on your system.
 
-## Setup & Running (macOS / Linux)
+## Setup & Running (macOS)
 
-The easiest way to start the app is to use the provided launch script, which handles everything automatically:
+If you are on a Mac, setup is completely automated!
 
-```bash
-# 1. Open Terminal and navigate to the folder where you downloaded this code
-cd path/to/youtube_downloader
+1. Download this code and extract the folder somewhere on your computer.
+2. **Double-click the `YouTubeDownloader` app icon** inside the folder.
+   *(Note: The very first time you open it, your Mac might show a security warning because it was downloaded from the internet. To bypass this, right-click the app icon and click **Open**).*
 
-# 2. Make the launcher executable (if not already):
-chmod +x launch.command
+That's it! The app will automatically handle installing Python dependencies, downloading FFmpeg, and securely opening the downloader in your web browser. 
 
-# 3. Run it:
-./launch.command
-```
-*(Alternatively, you can just double-click the included `YouTubeDownloader.app` icon).*
-
-The script will automatically:
-1. Create a Python virtual environment.
-2. Install the required dependencies (`Flask`, `yt-dlp`).
-3. Download a local, static build of FFmpeg (required for video processing).
-4. Start the local server and open your default web browser.
+*(Advanced Linux/Mac users: You can run `./launch.command` in the terminal instead).*
 
 ## Setup & Running (Windows)
 
-Because the automated launcher is written for Mac/Linux, Windows users just need to run a few manual commands to set it up:
+Because the automated 1-click launcher is built for Mac, Windows users need to do a one-time manual setup:
 
-1. **Install Python:** Ensure you have Python 3.8 or newer installed from [python.org](https://python.org).
-2. **Install FFmpeg:** Download [FFmpeg](https://ffmpeg.org/download.html), extract it, and add it to your Windows System PATH.
-3. **Open Command Prompt / PowerShell** in the project folder and run:
+**Step 1: Install Python**
+Download Python from [python.org](https://www.python.org/downloads/). 
+*CRITICAL:* When the installer opens, you must check the box that says **"Add Python to PATH"** at the very bottom before clicking Install.
+
+**Step 2: Install FFmpeg**
+This app requires FFmpeg to combine video and audio files. 
+1. Download [FFmpeg for Windows](https://github.com/BtbN/FFmpeg-Builds/releases) (look for the `ffmpeg-master-latest-win64-gpl.zip` file).
+2. Extract the folder and follow a guide to "Add FFmpeg to Windows PATH" so your computer recognizes it.
+
+**Step 3: Run the App**
+1. Open the **Command Prompt** on your computer (search for `cmd` in the Start menu).
+2. Type `cd ` (with a space) and then drag-and-drop the downloaded YouTube downloader folder directly into the black window to paste its path, then press Enter.
+3. Finally, copy and paste these commands one by one, pressing Enter after each:
    ```cmd
-   # Create a virtual environment
    python -m venv venv
-   
-   # Activate it
    venv\Scripts\activate
-   
-   # Install dependencies
    pip install -r requirements.txt
-   
-   # Run the application
    python app/app.py
    ```
+The window will show a web address (like `http://127.0.0.1:50000`). Just copy and paste that into your web browser to start downloading!
 
 ## Security Notes
 - Output file paths are strictly bounded. The application ensures downloads are only written safely to your user directory (defaulting to the `Downloads` folder) and actively blocks arbitrary directory traversal or writes to sensitive hidden system folders.
